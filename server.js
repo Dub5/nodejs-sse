@@ -12,6 +12,7 @@ var app = module.exports = express();
 
 app.get('/sync', function(req, res){
   req.socket.setTimeout(0x7FFFFFFF);
+  res.write('Subscribed');
   var domain = req.headers.host,
       subDomain = domain.split('.');
   subDomain = subDomain[0]
@@ -20,7 +21,7 @@ app.get('/sync', function(req, res){
   var messageCount = 0;
   var subscriber = redis.createClient();
 
-  subscriber.subscribe(subDomain + "_updated");
+  subscriber.subscribe("Connected to: " + subDomain + "_updated");
 
   subscriber.on("error", function(err){
     console.log("Redis Error: " + err);
@@ -40,6 +41,7 @@ app.get('/sync', function(req, res){
   res.write('\n');
 
   req.on("close", function(){
+    console.log("Disconnected");
     subscriber.unsubscribe();
     subscriber.quit();
   })
