@@ -12,7 +12,7 @@ var app = module.exports = express();
 
 app.get('/sync', function(req, res){
   req.socket.setTimeout(0x7FFFFFFF);
-  res.write('Subscribed');
+
   var domain = req.headers.host,
       subDomain = domain.split('.');
   subDomain = subDomain[0]
@@ -38,6 +38,7 @@ app.get('/sync', function(req, res){
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive'
   });
+  res.write('Subscribed');
   res.write('\n');
 
   req.on("close", function(){
