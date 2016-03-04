@@ -21,7 +21,7 @@ app.get('/sync', function(req, res){
   var messageCount = 0;
   var subscriber = redis.createClient();
 
-  subscriber.subscribe("Connected to: " + subDomain + "_updated");
+  subscriber.subscribe(subDomain + "_updated");
 
   subscriber.on("error", function(err){
     console.log("Redis Error: " + err);
