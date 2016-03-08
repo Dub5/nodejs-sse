@@ -10,6 +10,8 @@ var express = require('express'),
 
 var app = module.exports = express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/sync', function(req, res){
   req.socket.setTimeout(0x7FFFFFFF);
 
