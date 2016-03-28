@@ -1,12 +1,5 @@
-// var port = 8080;
-
-// Module Dependencies
-
 var express = require('express'),
-    // routes = require('./routes'),
     redis = require('redis');
-    // publisherClient = redis.createClient();
-
 
 var app = module.exports = express();
 
@@ -53,13 +46,3 @@ app.get('/sync', function(req, res){
 var server = app.listen(8080, function(){
   console.log("Express server listening on port %d in %s mode", server.address().port, app.settings.env);
 });
-
-
-
-// redis.subscribe('tests_updated');
-// // var iOS = socketServer.of('/sync')
-// socketServer.on('connection', function(socket){
-//   redis.on('message', function(channel, message){
-//     socket.emit('tests_updated', JSON.parse(message));
-//   });
-// });
